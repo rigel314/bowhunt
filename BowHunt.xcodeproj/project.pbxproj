@@ -23,6 +23,7 @@
 		C3B7371017134094007FF0C8 /* MainViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B7370E17134094007FF0C8 /* MainViewController_iPhone.xib */; };
 		C3B7371317134094007FF0C8 /* MainViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B7371117134094007FF0C8 /* MainViewController_iPad.xib */; };
 		C3B7371617134094007FF0C8 /* FlipsideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B7371417134094007FF0C8 /* FlipsideViewController.xib */; };
+		C3B7371E171340CB007FF0C8 /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B7371D171340CB007FF0C8 /* Arrow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		C3B7370F17134094007FF0C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainViewController_iPhone.xib; sourceTree = "<group>"; };
 		C3B7371217134094007FF0C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainViewController_iPad.xib; sourceTree = "<group>"; };
 		C3B7371517134094007FF0C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FlipsideViewController.xib; sourceTree = "<group>"; };
+		C3B7371C171340CB007FF0C8 /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
+		C3B7371D171340CB007FF0C8 /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 		C3B736F317134094007FF0C8 /* BowHunt */ = {
 			isa = PBXGroup;
 			children = (
+				C3B7371C171340CB007FF0C8 /* Arrow.h */,
+				C3B7371D171340CB007FF0C8 /* Arrow.m */,
 				C3B736FC17134094007FF0C8 /* AppDelegate.h */,
 				C3B736FD17134094007FF0C8 /* AppDelegate.m */,
 				C3B7370817134094007FF0C8 /* MainViewController.h */,
@@ -198,6 +203,7 @@
 				C3B7370717134094007FF0C8 /* BowHunt.xcdatamodeld in Sources */,
 				C3B7370A17134094007FF0C8 /* MainViewController.m in Sources */,
 				C3B7370D17134094007FF0C8 /* FlipsideViewController.m in Sources */,
+				C3B7371E171340CB007FF0C8 /* Arrow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
