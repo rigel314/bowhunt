@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "gameView.h"
 
 @interface MainViewController ()
 
@@ -18,6 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	self.view = [[gameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
 }
 
 - (void)didReceiveMemoryWarning

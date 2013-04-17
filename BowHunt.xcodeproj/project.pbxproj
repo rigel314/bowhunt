@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C34B159E171C79510034A4EF /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = C34B159D171C79510034A4EF /* Player.m */; };
+		C3730AB91715D28100885CFE /* gameView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3730AB81715D28100885CFE /* gameView.m */; };
 		C3B736EC17134094007FF0C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B736EB17134094007FF0C8 /* UIKit.framework */; };
 		C3B736EE17134094007FF0C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B736ED17134094007FF0C8 /* Foundation.framework */; };
 		C3B736F017134094007FF0C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B736EF17134094007FF0C8 /* CoreGraphics.framework */; };
@@ -27,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C34B159C171C79510034A4EF /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		C34B159D171C79510034A4EF /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		C3730AB71715D28000885CFE /* gameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameView.h; sourceTree = "<group>"; };
+		C3730AB81715D28100885CFE /* gameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameView.m; sourceTree = "<group>"; };
 		C3B736E817134094007FF0C8 /* BowHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BowHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B736EB17134094007FF0C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3B736ED17134094007FF0C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +74,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C34B159B171C791F0034A4EF /* game */ = {
+			isa = PBXGroup;
+			children = (
+				C34B159C171C79510034A4EF /* Player.h */,
+				C34B159D171C79510034A4EF /* Player.m */,
+				C3B7371C171340CB007FF0C8 /* Arrow.h */,
+				C3B7371D171340CB007FF0C8 /* Arrow.m */,
+				C3730AB71715D28000885CFE /* gameView.h */,
+				C3730AB81715D28100885CFE /* gameView.m */,
+			);
+			name = game;
+			sourceTree = "<group>";
+		};
 		C3B736DF17134094007FF0C8 = {
 			isa = PBXGroup;
 			children = (
@@ -99,8 +118,7 @@
 		C3B736F317134094007FF0C8 /* BowHunt */ = {
 			isa = PBXGroup;
 			children = (
-				C3B7371C171340CB007FF0C8 /* Arrow.h */,
-				C3B7371D171340CB007FF0C8 /* Arrow.m */,
+				C34B159B171C791F0034A4EF /* game */,
 				C3B736FC17134094007FF0C8 /* AppDelegate.h */,
 				C3B736FD17134094007FF0C8 /* AppDelegate.m */,
 				C3B7370817134094007FF0C8 /* MainViewController.h */,
@@ -204,6 +222,8 @@
 				C3B7370A17134094007FF0C8 /* MainViewController.m in Sources */,
 				C3B7370D17134094007FF0C8 /* FlipsideViewController.m in Sources */,
 				C3B7371E171340CB007FF0C8 /* Arrow.m in Sources */,
+				C3730AB91715D28100885CFE /* gameView.m in Sources */,
+				C34B159E171C79510034A4EF /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +362,7 @@
 				C3B7371B17134094007FF0C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

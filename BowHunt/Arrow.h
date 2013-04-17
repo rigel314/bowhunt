@@ -10,4 +10,12 @@
 
 @interface Arrow : NSObject
 
+@property CGPoint head;
+@property CGPoint velocity;
+@property CGPoint acceleration;
+@property int timeAlive;
+@property float angle;
+
+-(void)drawArrow:(CGContextRef)context;
+
 @end
