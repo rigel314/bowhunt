@@ -24,4 +24,5 @@
 	
 }
 -(void)newGame;
+-(void)trueArcTanOpp: (float) opp Adj:(float) adj;
 @end

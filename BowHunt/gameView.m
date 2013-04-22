@@ -93,4 +93,9 @@
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 }
 
+-(void)trueArcTanOpp:(float)opp Adj:(float)adj
+{
+	
+}
+
 @end
