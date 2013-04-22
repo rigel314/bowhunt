@@ -17,5 +17,6 @@
 @property float angle;
 
 -(void)drawArrow:(CGContextRef)context;
+-(void)moveHead;
 
 @end

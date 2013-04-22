@@ -10,6 +10,7 @@
 
 @interface Player : NSObject
 @property float length;
--(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left WithTouch:(UITouch)touch;
+@property float angle;
+-(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left;
 
 @end

@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Player.h"
+#import "Path.h"
+#import "Arrow.h"
 
 @interface gameView : UIView
 {
 	Player* player;
+	Path* path;
+	Arrow* arrow;
+	
+	NSTimer* timer;
+	
+	BOOL drawPath;
+	BOOL drawArrow;
+	
 }
+-(void)newGame;
 @end

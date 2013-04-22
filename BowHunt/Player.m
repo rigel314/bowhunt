@@ -10,7 +10,7 @@
 
 @implementation Player
 
--(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left WithTouch:(UITouch *)touch
+-(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left
 {
 	//Legs
 	CGContextMoveToPoint(context, left, bottom);
