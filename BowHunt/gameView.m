@@ -82,7 +82,7 @@
 	drawPath = false;
 	arrow.head = CGPointMake(50, 50);
 	arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
-	arrow.acceleration = CGPointMake(0, 9.8/100);
+	arrow.acceleration = CGPointMake(0, 1.0/1000);
 	arrow.timeAlive = 0;
 	arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 	drawArrow = true;

@@ -31,8 +31,13 @@
 
 -(void)moveHead
 {
-	_head.x += _velocity.x + _timeAlive*_acceleration.x;
-	_head.y += _velocity.y + _timeAlive*_acceleration.y;
+	_head.x += _velocity.x;
+	_head.y += _velocity.y;
+	
+	_velocity.x += _timeAlive*_acceleration.x;
+	_velocity.y += _timeAlive*_acceleration.y;
+	
+	_angle = atan2(_velocity.y,_velocity.x)+3.141592653;
 }
 
 @end
