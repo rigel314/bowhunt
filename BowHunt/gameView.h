@@ -21,6 +21,13 @@
 	
 	BOOL drawPath;
 	BOOL drawArrow;
+    
+    int winner; // 0 - game continues
+                // 1 - left wins
+                // 2 - right wins
+                //-------------------
+    int turn;   // 0 - left
+                // 1 - right
 	
 }
 -(void)newGame;

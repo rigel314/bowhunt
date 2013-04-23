@@ -10,6 +10,14 @@
 
 @implementation Player
 
+-(id)init
+{
+    bow = [Bow new];
+    _angle = 3;
+    return self;
+}
+
+
 -(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left
 {
 	//Legs
@@ -30,6 +38,10 @@
 	
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
 	CGContextAddLineToPoint(context, left+2*.707*_length, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
+    
+    //Bow
+    CGPoint bowPoint = CGPointMake(left+.707*_length, bottom-2*.707*_length-.75*_length);
+    [bow drawBowAtPoint:bowPoint forContext:context withAngle:_angle+3.14159];
 	
 	CGContextStrokePath(context);
 }
