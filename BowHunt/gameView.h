@@ -21,6 +21,7 @@
 	
 	BOOL drawPath;
 	BOOL drawArrow;
+    float angle;
     
     int winner; // 0 - game continues
                 // 1 - left wins
