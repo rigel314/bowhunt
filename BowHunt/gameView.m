@@ -45,6 +45,7 @@
 	// Player
 	CGContextSetLineWidth(context, 1);
 	[player drawForContext:context AtGround:290 AtRightFoot:30];
+    
 	
 	// Target
 	
@@ -76,6 +77,7 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	path.end = [[touches anyObject] locationInView:self];
+    player.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -86,6 +88,7 @@
 	arrow.timeAlive = 0;
 	arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 	drawArrow = true;
+    player.angle = arrow.angle;
 }
 
 -(void)newGame

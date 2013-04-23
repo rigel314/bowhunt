@@ -8,19 +8,23 @@
 
 #import "Bow.h"
 
-#define BOW_WIDTH 10
-#define BOW_HEIGHT 10
+#define BOW_WIDTH 30
+#define BOW_HEIGHT 30
+#define BOW_RADIUS 20
 
 @implementation Bow
 
--(void)drawBowAtPoint:(CGPoint)point forContext:(CGContextRef)context
+-(void)drawBowAtPoint:(CGPoint)point forContext:(CGContextRef)context withAngle:(float)angle
 {
-    CGContextAddEllipseInRect(context, CGRectMake(point.x, point.y, BOW_HEIGHT, BOW_WIDTH));
+    CGContextAddArc(context, point.x, point.y, BOW_RADIUS, angle, -45*3.14159/180+angle, 1);
+    CGContextAddArc(context, point.x, point.y, BOW_RADIUS, 45*3.14159/180+angle, angle, 1);
+//    CGContextAddLineToPoint(context, point.x, point.y);
+    
 }
 
--(void)updateBowAngle:(float)angle
-{
-    // update the bows angle on the screen
-}
+//-(void)updateBowAngle:(float)angle
+//{
+//    // update the bows angle on the screen
+//}
 
 @end

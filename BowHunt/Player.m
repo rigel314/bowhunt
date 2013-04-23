@@ -39,7 +39,7 @@
     
     //Bow
     CGPoint bowPoint = CGPointMake(left+.707*_length, bottom-2*.707*_length-.75*_length);
-    [bow drawBowAtPoint:bowPoint forContext:context];
+    [bow drawBowAtPoint:bowPoint forContext:context withAngle:_angle+3.14159];
 	
 	CGContextStrokePath(context);
 }
