@@ -13,6 +13,8 @@
 -(id)init
 {
     bow = [Bow new];
+    _angle = 3;
+    return self;
 }
 
 

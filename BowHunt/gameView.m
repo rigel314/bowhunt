@@ -9,6 +9,8 @@
 #import "gameView.h"
 
 #define TIME_INTERVAL .025
+#define LEFT 0
+#define RIGHT 1
 
 @implementation gameView
 
@@ -21,6 +23,7 @@
 		player.length = 10;
 		path = [Path new];
 		arrow = [Arrow new];
+        winner = 0;
 		[self newGame];
     }
     return self;
@@ -58,14 +61,22 @@
 
 -(void)timerFired:(NSTimer *)timer
 {
-	if (drawArrow) {
-		[arrow moveHead];
-		arrow.timeAlive++;
-		if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
-			drawArrow = false;
-		}
-	}
-	[self setNeedsDisplay];
+    if (!winner) {
+        if (turn == LEFT) {
+            // Start arrow on left side of screen
+        }
+        if (turn == RIGHT) {
+            // Start arrow on right side of screen
+        }
+        if (drawArrow) {
+            [arrow moveHead];
+            arrow.timeAlive++;
+            if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
+                drawArrow = false;
+            }
+        }
+        [self setNeedsDisplay];
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

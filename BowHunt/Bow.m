@@ -18,13 +18,7 @@
 {
     CGContextAddArc(context, point.x, point.y, BOW_RADIUS, angle, -45*3.14159/180+angle, 1);
     CGContextAddArc(context, point.x, point.y, BOW_RADIUS, 45*3.14159/180+angle, angle, 1);
-//    CGContextAddLineToPoint(context, point.x, point.y);
-    
 }
 
-//-(void)updateBowAngle:(float)angle
-//{
-//    // update the bows angle on the screen
-//}
 
 @end

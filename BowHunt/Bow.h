@@ -9,13 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Bow : NSObject
-{
-//    float angle;
-    float radius;
-    float width;
-}
 
 -(void)drawBowAtPoint:(CGPoint)point forContext:(CGContextRef)context withAngle:(float)angle;
-//-(void)updateBowAngle:(float)angle;
 
 @end
