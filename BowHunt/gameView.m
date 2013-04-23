@@ -84,18 +84,13 @@
 	arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
 	arrow.acceleration = CGPointMake(0, 9.8/100);
 	arrow.timeAlive = 0;
-	arrow.angle = atan((path.start.y-path.end.y)/(path.start.x-path.end.y));
+	arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 	drawArrow = true;
 }
 
 -(void)newGame
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-}
-
--(void)trueArcTanOpp:(float)opp Adj:(float)adj
-{
-	
 }
 
 @end

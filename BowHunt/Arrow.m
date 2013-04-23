@@ -18,9 +18,12 @@
 	CGContextSetLineWidth(context, 1);
 	
 	CGContextMoveToPoint(context, _head.x, _head.y);
-	CGContextAddLineToPoint(context, _head.x-ArrLen*cos(_angle), _head.y+ArrLen*sin(_angle));
+	CGContextAddLineToPoint(context, _head.x+ArrLen*cos(_angle), _head.y+ArrLen*sin(_angle));
 	
 	CGContextStrokePath(context);
+	
+	CGContextSetRGBFillColor(context, 1, 0, 0, 1);
+	CGContextFillEllipseInRect(context, CGRectMake(_head.x-2, _head.y-2, 4, 4));
 	
 	// draw the arrowhead and feathers
 	
