@@ -91,7 +91,7 @@
         player1.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
     }
     else if (turn == RIGHT) {
-        player2.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
+        player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x));
     }
     angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 }
@@ -113,7 +113,7 @@
         arrow.acceleration = CGPointMake(0, 1.0/1000);
         arrow.timeAlive = 0;
         arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
-        player2.angle = arrow.angle;
+        player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x));
     }
 	
 	drawPath = false;
