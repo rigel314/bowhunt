@@ -13,12 +13,17 @@
 #define RIGHT 1
 
 @implementation gameView
-
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+	self = [super initWithFrame:frame];
+	if (self) {
 		self.backgroundColor = [UIColor whiteColor];
+		
+		info = [UIButton buttonWithType:UIButtonTypeInfoDark];
+		[info retain];
+		info.frame = CGRectMake(frame.size.height/2-15, 0, 30, 30);
+		[self addSubview:info];
+		
 		player1 = [Player new];
 		player1.length = 10;
 		player2 = [Player new];
@@ -34,6 +39,8 @@
 
 -(void)drawRect:(CGRect)rect
 {
+	char* str;
+	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	// Arrow (s)?
@@ -53,15 +60,34 @@
 	[player1 drawForContext:context AtGround:290 AtRightFoot:30 Mirror:LEFT];
 	[player2 drawForContext:context AtGround:290 AtRightFoot:30 Mirror:RIGHT];
     
+	// Text
+	if (turn == LEFT)
+		str="Player 1";
+	else
+		str="Player 2";
 	
-	// Target
+	CGRect bounds = [UIScreen mainScreen].bounds;
 	
+	CGContextTranslateCTM(context, 0, bounds.size.width);
+	CGContextScaleCTM(context, 1, -1);
+	CGContextSetRGBFillColor(context, 0, 0, 0, 1);
+	CGContextSetRGBStrokeColor(context, 0, 0, 1, 1);
+	CGContextSelectFont(context, "Helvetica-Bold", 20.0, kCGEncodingMacRoman);
+	CGContextSetCharacterSpacing(context, 1.7);
+	CGContextSetTextDrawingMode(context, kCGTextFill);
+	
+	CGContextShowTextAtPoint(context, bounds.size.height/2-50, bounds.size.width-50, str, 8);
+	
+	CGContextTranslateCTM(context, 0, bounds.size.width);
+	CGContextScaleCTM(context, 1, -1);
 	
 	// Path
 	if (drawPath) {
 		[path drawPath:context];
 	}
     
+	// Info Button
+	[info drawRect:rect];
 }
 
 -(void)timerFired:(NSTimer *)timer
@@ -101,7 +127,7 @@
         // Start arrow on left side of screen
         arrow.head = CGPointMake(30+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
         arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
-        arrow.acceleration = CGPointMake(0, 8.0/10000);
+        arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
         arrow.timeAlive = 0;
         arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
         player1.angle = arrow.angle;
@@ -110,7 +136,7 @@
         // Start arrow on right side of screen
         arrow.head = CGPointMake(430+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
         arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
-        arrow.acceleration = CGPointMake(0, 1.0/1000);
+        arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
         arrow.timeAlive = 0;
         arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
         player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x));

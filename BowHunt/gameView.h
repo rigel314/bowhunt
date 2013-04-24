@@ -17,8 +17,11 @@
 	Player* player2;
 	Path* path;
 	Arrow* arrow;
+	UIButton* info;
 	
 	NSTimer* timer;
+	
+	CGPoint acceleration;
 	
 	BOOL drawPath;
 	BOOL drawArrow;
