@@ -13,7 +13,8 @@
 
 @interface gameView : UIView
 {
-	Player* player;
+	Player* player1;
+	Player* player2;
 	Path* path;
 	Arrow* arrow;
 	

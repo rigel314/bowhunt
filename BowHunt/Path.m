@@ -20,15 +20,27 @@
 	CGContextMoveToPoint(context, _start.x, _start.y);
 	CGContextAddLineToPoint(context, _end.x , _end.y);
 	
-	str = [[NSString alloc] initWithFormat:@"%f", atan2((_end.y-_start.y),(_end.x-_start.x))*180/3.141592653];
-	CGContextTranslateCTM(context, 0, [UIScreen mainScreen].bounds.size.height);
+	CGContextStrokePath(context);
+	
+	str = [[NSString alloc] initWithFormat:@"Angle:%.2f", atan2((_end.y-_start.y),(_end.x-_start.x))*180/3.141592653+180];
+	
+	CGRect bounds = [UIScreen mainScreen].bounds;
+	
+	CGContextTranslateCTM(context, 0, bounds.size.width);
 	CGContextScaleCTM(context, 1, -1);
-	CGContextSelectFont(context, "Helvetica", 10.0, kCGEncodingMacRoman);
+	CGContextSetRGBFillColor(context, 0, 0, 1, 1);
+	CGContextSetRGBStrokeColor(context, 0, 0, 1, 1);
+	CGContextSelectFont(context, "Helvetica-Bold", 10.0, kCGEncodingMacRoman);
 	CGContextSetCharacterSpacing(context, 1.7);
 	CGContextSetTextDrawingMode(context, kCGTextFill);
-	CGContextShowTextAtPoint(context, _end.x+15, -_end.y+15, [str cStringUsingEncoding:NSASCIIStringEncoding], [str length]);
 	
-	CGContextStrokePath(context);
+	// remember to draw in screen
+	CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y-15, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+	[str release];
+	str = [[NSString alloc] initWithFormat:@"Velocity:(%.2f,%.2f)", (_start.x-_end.x)/8, (_start.y-_end.y)/8];
+	CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y-15 - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+	
+	[str release];
 	
 	// draw the text for angle and power
 }

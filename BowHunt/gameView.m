@@ -19,8 +19,11 @@
     self = [super initWithFrame:frame];
     if (self) {
 		self.backgroundColor = [UIColor whiteColor];
-		player = [Player new];
-		player.length = 10;
+		player1 = [Player new];
+		player1.length = 10;
+		player2 = [Player new];
+		player2.length = 10;
+		
 		path = [Path new];
 		arrow = [Arrow new];
         winner = 0;
@@ -47,7 +50,8 @@
 	
 	// Player
 	CGContextSetLineWidth(context, 1);
-	[player drawForContext:context AtGround:290 AtRightFoot:30];
+	[player1 drawForContext:context AtGround:290 AtRightFoot:30];
+	[player2 drawForContext:context AtGround:290 AtRightFoot:430];
     
 	
 	// Target
@@ -83,16 +87,16 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	path.end = [[touches anyObject] locationInView:self];
-    player.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
+    player1.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
     angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (turn == LEFT) {
         // Start arrow on left side of screen
-        arrow.head = CGPointMake(30+.707*player.length+(20*cos(angle-3.14159)), 290-2*.707*player.length-.75*player.length+(20*sin(angle-3.14159)));
-        arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
-        arrow.acceleration = CGPointMake(0, 1.0/1000);
+        arrow.head = CGPointMake(30+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
+        arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
+        arrow.acceleration = CGPointMake(0, 8.0/10000);
         arrow.timeAlive = 0;
         arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
     }
@@ -107,7 +111,7 @@
 	drawPath = false;
 	
 	drawArrow = true;
-    player.angle = arrow.angle;
+    player1.angle = arrow.angle;
 }
 
 -(void)newGame
