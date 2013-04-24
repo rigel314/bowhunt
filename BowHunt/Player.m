@@ -18,8 +18,14 @@
 }
 
 
--(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left
+-(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left Mirror:(bool)mir
 {
+	CGRect bounds = [UIScreen mainScreen].bounds;
+	if (mir) {
+		CGContextTranslateCTM(context, bounds.size.height, 0);
+		CGContextScaleCTM(context, -1, 1);
+	}
+	
 	//Legs
 	CGContextMoveToPoint(context, left, bottom);
 	CGContextAddLineToPoint(context, left+.707*_length, bottom-2*.707*_length);
@@ -44,6 +50,11 @@
     [bow drawBowAtPoint:bowPoint forContext:context withAngle:_angle+3.14159];
 	
 	CGContextStrokePath(context);
+	
+	if (mir) {
+		CGContextTranslateCTM(context, bounds.size.height, 0);
+		CGContextScaleCTM(context, -1, 1);
+	}
 }
 
 @end

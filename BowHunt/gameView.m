@@ -50,8 +50,8 @@
 	
 	// Player
 	CGContextSetLineWidth(context, 1);
-	[player1 drawForContext:context AtGround:290 AtRightFoot:30];
-	[player2 drawForContext:context AtGround:290 AtRightFoot:430];
+	[player1 drawForContext:context AtGround:290 AtRightFoot:30 Mirror:LEFT];
+	[player2 drawForContext:context AtGround:290 AtRightFoot:30 Mirror:RIGHT];
     
 	
 	// Target
@@ -108,6 +108,7 @@
         arrow.timeAlive = 0;
         arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
     }
+	
 	drawPath = false;
 	
 	drawArrow = true;
@@ -117,6 +118,7 @@
 -(void)newGame
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+	turn = LEFT;
 }
 
 @end
