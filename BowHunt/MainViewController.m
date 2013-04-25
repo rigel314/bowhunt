@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.view = [[gameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+	self.view = [[gameView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame MVC:self];
 }
 
 - (void)didReceiveMemoryWarning

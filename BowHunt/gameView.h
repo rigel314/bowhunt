@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MainViewController.h"
 #import "Player.h"
 #import "Path.h"
 #import "Arrow.h"
 
 @interface gameView : UIView
 {
+	MainViewController* mvc;
+	
 	Player* player1;
 	Player* player2;
 	Path* path;
@@ -36,4 +39,5 @@
 	
 }
 -(void)newGame;
+-(id)initWithFrame:(CGRect)frame MVC:(MainViewController*)controller;
 @end

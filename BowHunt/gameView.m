@@ -7,21 +7,25 @@
 //
 
 #import "gameView.h"
+#import "MainViewController.h"
 
 #define TIME_INTERVAL .025
 #define LEFT 0
 #define RIGHT 1
 
 @implementation gameView
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame MVC:(MainViewController*)controller
 {
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.backgroundColor = [UIColor whiteColor];
 		
+		mvc = controller;
+		
 		info = [UIButton buttonWithType:UIButtonTypeInfoDark];
 		[info retain];
 		info.frame = CGRectMake(frame.size.height/2-15, 0, 30, 30);
+		[info addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:info];
 		
 		player1 = [Player new];
@@ -35,6 +39,11 @@
 		[self newGame];
     }
     return self;
+}
+
+- (IBAction)showInfo:(id)sender
+{
+	[mvc showInfo:sender];
 }
 
 -(void)drawRect:(CGRect)rect
@@ -85,9 +94,6 @@
 	if (drawPath) {
 		[path drawPath:context];
 	}
-    
-	// Info Button
-	[info drawRect:rect];
 }
 
 -(void)timerFired:(NSTimer *)timer
