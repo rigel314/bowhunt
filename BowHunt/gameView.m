@@ -97,6 +97,7 @@
         if (drawArrow) {
             [arrow moveHead];
             arrow.timeAlive++;
+			//arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10));
             if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
                 drawArrow = false;
             }
@@ -114,13 +115,15 @@
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	path.end = [[touches anyObject] locationInView:self];
+	
+	angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
+	
     if (turn == LEFT) {
-        player1.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
+        player1.angle = angle;
     }
     else if (turn == RIGHT) {
-        player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x));
+        player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x)); // recalculating because of the flipped coordinate system.
     }
-    angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -130,17 +133,15 @@
         arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
         arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
         arrow.timeAlive = 0;
-        arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
-        player1.angle = arrow.angle;
+        arrow.angle = angle;
     }
     if (turn == RIGHT) {
         // Start arrow on right side of screen
-        arrow.head = CGPointMake(430+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
+        arrow.head = CGPointMake(435+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
         arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
         arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
         arrow.timeAlive = 0;
-        arrow.angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
-        player2.angle = atan2((path.end.y-path.start.y),-(path.end.x-path.start.x));
+        arrow.angle = angle;
     }
 	
 	drawPath = false;
