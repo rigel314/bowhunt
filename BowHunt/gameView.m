@@ -97,9 +97,9 @@
         if (drawArrow) {
             [arrow moveHead];
             arrow.timeAlive++;
-			//arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10));
+			//arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10)); // This is fun!
             if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
-                drawArrow = false;
+                drawArrow = false; // Change test to ground || edges that acceleration could make it fall off.
             }
         }
         [self setNeedsDisplay];
@@ -130,20 +130,16 @@
     if (turn == LEFT) {
         // Start arrow on left side of screen
         arrow.head = CGPointMake(30+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
-        arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
-        arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
-        arrow.timeAlive = 0;
-        arrow.angle = angle;
     }
-    if (turn == RIGHT) {
+    else if (turn == RIGHT) {
         // Start arrow on right side of screen
         arrow.head = CGPointMake(435+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
-        arrow.velocity = CGPointMake((path.start.x-path.end.x)/100, (path.start.y-path.end.y)/100);
-        arrow.acceleration = CGPointMake(-8.0/10000, 8.0/10000);
-        arrow.timeAlive = 0;
-        arrow.angle = angle;
     }
-	
+	arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
+	arrow.acceleration = acceleration;
+	arrow.timeAlive = 0;
+	arrow.angle = angle;
+
 	drawPath = false;
 	turn = !turn;
 	drawArrow = true;
@@ -153,6 +149,7 @@
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 	turn = LEFT;
+	acceleration = CGPointMake(-8.0/10000, 8.0/10000);
 }
 
 @end
