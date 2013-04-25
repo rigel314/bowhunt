@@ -25,7 +25,7 @@
 		info = [UIButton buttonWithType:UIButtonTypeInfoDark];
 		[info retain];
 		info.frame = CGRectMake(frame.size.height/2-15, 0, 30, 30);
-		[info addTarget:self action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
+		[info addTarget:mvc action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:info];
 		
 		player1 = [Player new];
@@ -39,11 +39,6 @@
 		[self newGame];
     }
     return self;
-}
-
-- (IBAction)showInfo:(id)sender
-{
-	[mvc showInfo:sender];
 }
 
 -(void)drawRect:(CGRect)rect
