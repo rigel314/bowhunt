@@ -18,5 +18,6 @@
 
 -(void)drawArrow:(CGContextRef)context;
 -(void)moveHead;
+-(BOOL)arrowDead:(CGRect)frame;
 
 @end

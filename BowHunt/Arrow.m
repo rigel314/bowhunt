@@ -40,4 +40,17 @@
 	_angle = atan2(_velocity.y,_velocity.x)+3.141592653;
 }
 
+-(BOOL)arrowDead:(CGRect)frame
+{
+	BOOL test;
+	if (_acceleration.x < 0) {
+		test = _head.x < 0;
+	}else if (_acceleration.x > 0){
+		test = _head.x > frame.size.height;
+	}else{
+		test = _head.x < 0 || _head.x > frame.size.height;
+	}
+	return test;
+}
+
 @end

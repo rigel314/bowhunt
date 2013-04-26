@@ -24,8 +24,6 @@
 	
 	NSTimer* timer;
 	
-	CGPoint acceleration;
-	
 	BOOL drawPath;
 	BOOL drawArrow;
     float angle;
@@ -38,6 +36,10 @@
                 // 1 - right
 	
 }
+
+@property CGPoint acceleration;
+@property BOOL hardmode;
+
 -(void)newGame;
 -(id)initWithFrame:(CGRect)frame MVC:(MainViewController*)controller;
 -(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point;

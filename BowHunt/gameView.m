@@ -28,8 +28,10 @@
 		[info addTarget:mvc action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:info];
 		
-//		acceleration = CGPointMake(0, 8.0/10000);
-		acceleration = CGPointMake(0, 0);
+		_acceleration = CGPointMake(0, 8.0/10000);
+//		acceleration = CGPointMake(0, 0);
+		
+		_hardmode = false;
 		
 		player1 = [Player new];
 		player1.length = 10;
@@ -100,7 +102,9 @@
         if (drawArrow) {
             [arrow moveHead];
             arrow.timeAlive++;
-			//arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10)); // This is fun!
+			if(_hardmode)
+				arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10)+1.0/10000); // This is fun!
+			
 			if ([self withinRect:player1.head Point:arrow.head]) { // Maybe increment kill count
 				[timer invalidate];
 			}
@@ -108,7 +112,7 @@
 				[timer invalidate];
 			}
 			
-            if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
+            if (arrow.head.y > 290 || [arrow arrowDead:self.frame]) { //|| arrow.head.x > self.frame.size.height || arrow.head.x < 0
                 drawArrow = false; // Change test to ground || edges that acceleration could make it fall off.
 				turn = !turn;
             }
@@ -156,7 +160,7 @@
         arrow.head = CGPointMake(435+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
     }
 	arrow.velocity = CGPointMake((path.start.x-path.end.x)/80, (path.start.y-path.end.y)/80);
-	arrow.acceleration = acceleration;
+	arrow.acceleration = _acceleration;
 	arrow.timeAlive = 0;
 	arrow.angle = angle;
 
