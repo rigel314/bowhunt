@@ -15,6 +15,7 @@
 }
 @property float length;
 @property float angle;
+@property CGRect head;
 
 -(void)drawForContext:(CGContextRef)context AtGround:(float)bottom AtRightFoot:(float)left Mirror:(bool)mir;
 

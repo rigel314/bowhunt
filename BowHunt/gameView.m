@@ -28,6 +28,9 @@
 		[info addTarget:mvc action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:info];
 		
+//		acceleration = CGPointMake(0, 8.0/10000);
+		acceleration = CGPointMake(0, 0);
+		
 		player1 = [Player new];
 		player1.length = 10;
 		player2 = [Player new];
@@ -91,15 +94,23 @@
 	}
 }
 
--(void)timerFired:(NSTimer *)timer
+-(void)timerFired:(NSTimer *)time
 {
     if (!winner) {
         if (drawArrow) {
             [arrow moveHead];
             arrow.timeAlive++;
 			//arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10)); // This is fun!
+			if ([self withinRect:player1.head Point:arrow.head]) { // Maybe increment kill count
+				[timer invalidate];
+			}
+			if ([self withinRect:player2.head Point:arrow.head]) { // Maybe increment kill count
+				[timer invalidate];
+			}
+			
             if (arrow.head.y > 290 || arrow.head.x > self.frame.size.height || arrow.head.x < 0) {
                 drawArrow = false; // Change test to ground || edges that acceleration could make it fall off.
+				turn = !turn;
             }
         }
         [self setNeedsDisplay];
@@ -108,12 +119,18 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (drawArrow) {
+		return;
+	}
 	drawPath = true;
 	path.start = [[touches anyObject] locationInView:self];
 	path.end = path.start;
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (drawArrow) {
+		return;
+	}
 	path.end = [[touches anyObject] locationInView:self];
 	
 	angle = atan2((path.end.y-path.start.y),(path.end.x-path.start.x));
@@ -127,6 +144,9 @@
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	if (drawArrow) {
+		return;
+	}
     if (turn == LEFT) {
         // Start arrow on left side of screen
         arrow.head = CGPointMake(30+.707*player1.length+(20*cos(angle-3.14159)), 290-2*.707*player1.length-.75*player1.length+(20*sin(angle-3.14159)));
@@ -141,7 +161,6 @@
 	arrow.angle = angle;
 
 	drawPath = false;
-	turn = !turn;
 	drawArrow = true;
 }
 
@@ -149,7 +168,14 @@
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 	turn = LEFT;
-	acceleration = CGPointMake(-8.0/10000, 8.0/10000);
+}
+
+-(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point
+{ // Did you touche the paddle?
+	if((point.x>=rect.origin.x && point.x<=rect.origin.x+rect.size.width) &&
+	   (point.y>=rect.origin.y && point.y<=rect.origin.y+rect.size.height))
+		return true;
+	return false;
 }
 
 @end

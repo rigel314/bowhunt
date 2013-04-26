@@ -40,4 +40,5 @@
 }
 -(void)newGame;
 -(id)initWithFrame:(CGRect)frame MVC:(MainViewController*)controller;
+-(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point;
 @end

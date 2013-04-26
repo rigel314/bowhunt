@@ -36,7 +36,8 @@
 	CGContextAddLineToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length);
 	
 	//Head
-	CGContextAddEllipseInRect(context, CGRectMake(left+.707*_length-.5*_length, bottom-2*.707*_length-2.5*_length, _length, _length));
+	_head = CGRectMake(left+.707*_length-.5*_length, bottom-2*.707*_length-2.5*_length, _length, _length);
+	CGContextAddEllipseInRect(context, _head);
 	
 	//Arms
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
@@ -52,6 +53,7 @@
 	CGContextStrokePath(context);
 	
 	if (mir) {
+		_head = CGRectMake(bounds.size.height - left-.707*_length-.5*_length, bottom-2*.707*_length-2.5*_length, _length, _length);
 		CGContextTranslateCTM(context, bounds.size.height, 0);
 		CGContextScaleCTM(context, -1, 1);
 	}
