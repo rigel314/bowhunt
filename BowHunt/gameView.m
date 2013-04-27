@@ -106,10 +106,10 @@
 				arrow.acceleration = CGPointMake(8.0/1000*cos(arrow.timeAlive/10), 8.0/1000*sin(arrow.timeAlive/10)+3.0/10000); // This is fun!
 			
 			if ([self withinRect:player1.head Point:arrow.head]) { // Maybe increment kill count
-				[timer invalidate];
+				[self finishedGameWithWinner:RIGHT];
 			}
 			if ([self withinRect:player2.head Point:arrow.head]) { // Maybe increment kill count
-				[timer invalidate];
+				[self finishedGameWithWinner:LEFT];
 			}
 			
             if (arrow.head.y > 290 || [arrow arrowDead:self.frame]) { //|| arrow.head.x > self.frame.size.height || arrow.head.x < 0
@@ -172,6 +172,13 @@
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
 	turn = LEFT;
+}
+
+-(void)finishedGameWithWinner:(int) winner
+{
+    int win = winner;
+    [timer invalidate];
+    NSLog(@"and the winner is %i", win);
 }
 
 -(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point
