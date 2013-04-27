@@ -176,9 +176,18 @@
 
 -(void)finishedGameWithWinner:(int) winner
 {
-    int win = winner;
+    NSString* name;
+    if (!winner) {
+        name = [NSString stringWithFormat:@"Player 1"];
+    }
+    else {
+        name = [NSString stringWithFormat:@"Player 2"];
+    }
     [timer invalidate];
-    NSLog(@"and the winner is %i", win);
+    NSString* winnerString = [NSString stringWithFormat:@"The winner is %@", name];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:0 cancelButtonTitle:@"done" otherButtonTitles:@"Play Again", nil];
+    [alert show];
+    [alert release];
 }
 
 -(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point
