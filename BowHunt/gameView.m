@@ -103,7 +103,7 @@
             [arrow moveHead];
             arrow.timeAlive++;
 			if(_hardmode)
-				arrow.acceleration = CGPointMake(8.0/10000*cos(arrow.timeAlive/10), 8.0/10000*sin(arrow.timeAlive/10)+1.0/10000); // This is fun!
+				arrow.acceleration = CGPointMake(8.0/1000*cos(arrow.timeAlive/10), 8.0/1000*sin(arrow.timeAlive/10)+3.0/10000); // This is fun!
 			
 			if ([self withinRect:player1.head Point:arrow.head]) { // Maybe increment kill count
 				[timer invalidate];
