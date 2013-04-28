@@ -12,6 +12,6 @@
 @property CGPoint start;
 @property CGPoint end;
 
--(void)drawPath:(CGContextRef)context;
+-(void)drawPath:(CGContextRef)context forTurn:(int)turn;
 
 @end

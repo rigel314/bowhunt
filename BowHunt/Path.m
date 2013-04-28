@@ -10,7 +10,7 @@
 
 @implementation Path
 
--(void)drawPath:(CGContextRef)context
+-(void)drawPath:(CGContextRef)context forTurn:(int)turn
 {
 	NSString* str;
 	
@@ -35,10 +35,10 @@
 	CGContextSetTextDrawingMode(context, kCGTextFill);
 	
 	// remember to draw in screen
-	CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y-15, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+	CGContextShowTextAtPoint(context, _start.x+15, [UIScreen mainScreen].bounds.size.width - _start.y-15, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
 	[str release];
 	str = [[NSString alloc] initWithFormat:@"Velocity:(%.2f,%.2f)", (_start.x-_end.x)/8, (_start.y-_end.y)/8];
-	CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y-15 - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+	CGContextShowTextAtPoint(context, _start.x+15, [UIScreen mainScreen].bounds.size.width - _start.y-15 - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
 	
 	[str release];
 	

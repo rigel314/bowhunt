@@ -92,7 +92,7 @@
 	
 	// Path
 	if (drawPath) {
-		[path drawPath:context];
+		[path drawPath:context forTurn:turn];
 	}
 }
 
