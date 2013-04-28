@@ -171,7 +171,9 @@
 -(void)newGame
 {
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-	turn = LEFT;
+    turn = LEFT;
+    winner = 0;
+    [arrow remove];
 }
 
 -(void)finishedGameWithWinner:(int) winner
@@ -185,9 +187,21 @@
     }
     [timer invalidate];
     NSString* winnerString = [NSString stringWithFormat:@"The winner is %@", name];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:0 cancelButtonTitle:@"done" otherButtonTitles:@"Play Again", nil];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:@"Play Again", nil];
     [alert show];
     [alert release];
+}
+
+-(void)alertView:(UIAlertView*)av clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        // first button
+        exit(1);
+    }
+    else if (buttonIndex ==1) {
+        [self newGame];
+    }
 }
 
 -(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point
