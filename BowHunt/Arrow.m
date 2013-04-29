@@ -19,14 +19,21 @@
 	
 	CGContextMoveToPoint(context, _head.x, _head.y);
 	CGContextAddLineToPoint(context, _head.x+ArrLen*cos(_angle), _head.y+ArrLen*sin(_angle));
+		
+	// draw the arrowhead and feathers
+	CGContextMoveToPoint(context, _head.x, _head.y);
+	CGContextAddLineToPoint(context, _head.x-ArrLen/3*cos(-_angle+5*3.141592653/6), _head.y+ArrLen/3*sin(-_angle+5*3.141592653/6));
+	CGContextMoveToPoint(context, _head.x, _head.y);
+	CGContextAddLineToPoint(context, _head.x-ArrLen/3*cos(-_angle-5*3.141692653/6), _head.y+ArrLen/3*sin(-_angle-5*3.141692653/6));
+	
+	CGPoint end = CGPointMake(_head.x+ArrLen*cos(_angle), _head.y+ArrLen*sin(_angle));
+	
+	CGContextMoveToPoint(context, end.x, end.y);
+	CGContextAddLineToPoint(context, end.x-ArrLen/3*cos(-_angle+5*3.141592653/6), end.y+ArrLen/3*sin(-_angle+5*3.141592653/6));
+	CGContextMoveToPoint(context, end.x, end.y);
+	CGContextAddLineToPoint(context, end.x-ArrLen/3*cos(-_angle-5*3.141592653/6), end.y+ArrLen/3*sin(-_angle-5*3.141592653/6));
 	
 	CGContextStrokePath(context);
-	
-	CGContextSetRGBFillColor(context, 1, 0, 0, 1);
-	CGContextFillEllipseInRect(context, CGRectMake(_head.x-2, _head.y-2, 4, 4));
-	
-	// draw the arrowhead and feathers
-	
 }
 
 -(void)moveHead
