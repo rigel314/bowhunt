@@ -48,6 +48,19 @@
 	gameView* gv = (gameView*)((MainViewController*)_delegate).view;
 	gv.hardmode = hardmode;
 	gv.acceleration = CGPointMake(speed/10000.0, gv.acceleration.y);
+	
+	NSMutableDictionary* settings = [NSMutableDictionary new];
+	[settings setValue:[NSString stringWithFormat:@"%d",speed] forKey:@"wind"];
+	[settings setValue:[NSString stringWithFormat:@"%d",hardmode] forKey:@"hard"];
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *dir = [paths objectAtIndex:0];
+    NSString *filePath = [[NSString alloc] initWithString:[dir stringByAppendingPathComponent:@"settings.dic"]];
+	
+	[settings writeToFile:filePath atomically:YES];
+	
+	[settings release];
+	[filePath release];
 }
 
 - (void)didReceiveMemoryWarning

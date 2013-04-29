@@ -18,29 +18,50 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *dir = [paths objectAtIndex:0];
+		NSString *filePath = [[NSString alloc] initWithString:[dir stringByAppendingPathComponent:@"settings.dic"]];
+		
+		if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+			NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
+			float wind = ((NSString* )[settings objectForKey:@"wind"]).intValue/10000.0;
+			_acceleration = CGPointMake(wind, 8.0/10000);
+			
+			_hardmode = ((NSString* )[settings objectForKey:@"hard"]).intValue;
+			
+			[settings release];
+		}
+		else
+		{
+			_acceleration = CGPointMake(0, 8.0/10000);
+			
+			_hardmode = false;
+		}
+		
+		[filePath release];
+		
+		// Global constant things
 		self.backgroundColor = [UIColor whiteColor];
 		
 		mvc = controller;
 		
+		// Adding the button
 		info = [UIButton buttonWithType:UIButtonTypeInfoDark];
 		[info retain];
 		info.frame = CGRectMake(frame.size.height/2-15, 0, 30, 30);
 		[info addTarget:mvc action:@selector(showInfo:) forControlEvents:UIControlEventTouchUpInside];
 		[self addSubview:info];
 		
-		_acceleration = CGPointMake(0, 8.0/10000);
-//		acceleration = CGPointMake(0, 0);
-		
-		_hardmode = false;
-		
+		// Creating the players
 		player1 = [Player new];
 		player1.length = 10;
 		player2 = [Player new];
 		player2.length = 10;
 		
+		// Creating the other elements of the game
 		path = [Path new];
 		arrow = [Arrow new];
-        winner = 0;
+		
 		[self newGame];
     }
     return self;
@@ -176,10 +197,10 @@
     drawArrow = FALSE;
 }
 
--(void)finishedGameWithWinner:(int) winner
+-(void)finishedGameWithWinner:(int) player
 {
     NSString* name;
-    if (!winner) {
+    if (!player) {
         name = [NSString stringWithFormat:@"Player 1"];
     }
     else {
