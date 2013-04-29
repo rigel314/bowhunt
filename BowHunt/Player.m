@@ -41,7 +41,7 @@
 	
 	//Arms
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
-	CGContextAddLineToPoint(context, left+.3*_length, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
+	CGContextAddLineToPoint(context, left, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
 	
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
 	CGContextAddLineToPoint(context, left+2*.707*_length, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
