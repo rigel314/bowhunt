@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "Path.h"
 #import "Arrow.h"
+#import "Particles.h"
 
 @interface gameView : UIView
 {
@@ -20,6 +21,7 @@
 	Player* player2;
 	Path* path;
 	Arrow* arrow;
+	Particles* particles;
 	UIButton* info;
 	
 	NSTimer* timer;
@@ -34,7 +36,6 @@
                 //-------------------
     int turn;   // 0 - left
                 // 1 - right
-	
 }
 
 @property CGPoint acceleration;

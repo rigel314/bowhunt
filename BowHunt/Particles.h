@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#define numPoints 50
 
 @interface Particles : NSObject
+{
+	CGPoint points[numPoints];
+}
+
+-(void)drawParticlesWithContext:(CGContextRef)context;
+-(void)moveParticlesWithWind:(float)wind;
 
 @end

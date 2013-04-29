@@ -61,6 +61,7 @@
 		// Creating the other elements of the game
 		path = [Path new];
 		arrow = [Arrow new];
+		particles = [Particles new];
 		
 		[self newGame];
     }
@@ -72,6 +73,10 @@
 	char* str;
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	if (!_hardmode && _acceleration.x != 0) {
+		[particles drawParticlesWithContext:context];
+	}
 	
 	// Arrow (s)?
 	if (drawArrow) {
@@ -120,6 +125,10 @@
 -(void)timerFired:(NSTimer *)time
 {
     if (!winner) {
+		if (!_hardmode) {
+			[particles moveParticlesWithWind:_acceleration.x*10000];
+		}
+		
         if (drawArrow) {
             [arrow moveHead];
             arrow.timeAlive++;
