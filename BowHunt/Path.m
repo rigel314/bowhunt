@@ -34,21 +34,21 @@
 	CGContextSetCharacterSpacing(context, 1.7);
 	CGContextSetTextDrawingMode(context, kCGTextFill);
     
-    if (turn == 0) {
+    if (turn == 1) {
         // Draw left side label
-        CGContextShowTextAtPoint(context, _start.x-120-15, [UIScreen mainScreen].bounds.size.width - _start.y-15, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+        CGContextShowTextAtPoint(context, _end.x-120-30, [UIScreen mainScreen].bounds.size.width - _end.y, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
         [str release];
         str = [[NSString alloc] initWithFormat:@"Velocity:(%.2f,%.2f)", (_start.x-_end.x)/8, (_start.y-_end.y)/8];
-        CGContextShowTextAtPoint(context, _start.x-120-15, [UIScreen mainScreen].bounds.size.width - _start.y-15 - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+        CGContextShowTextAtPoint(context, _end.x-120-30, [UIScreen mainScreen].bounds.size.width - _end.y - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
         
         [str release];
     }
-    else if (turn ==1) {
+    else if (turn == 0) {
         // Draw right side label
-        CGContextShowTextAtPoint(context, _start.x+15, [UIScreen mainScreen].bounds.size.width - _start.y-15, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+        CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
         [str release];
         str = [[NSString alloc] initWithFormat:@"Velocity:(%.2f,%.2f)", (_start.x-_end.x)/8, (_start.y-_end.y)/8];
-        CGContextShowTextAtPoint(context, _start.x+15, [UIScreen mainScreen].bounds.size.width - _start.y-15 - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
+        CGContextShowTextAtPoint(context, _end.x+15, [UIScreen mainScreen].bounds.size.width - _end.y - 10, [str cStringUsingEncoding:NSUTF8StringEncoding], [str length]);
         
         [str release];
     }
