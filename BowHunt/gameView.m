@@ -173,7 +173,7 @@
 	timer = [NSTimer scheduledTimerWithTimeInterval:TIME_INTERVAL target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
     turn = LEFT;
     winner = 0;
-    [arrow remove];
+    drawArrow = FALSE;
 }
 
 -(void)finishedGameWithWinner:(int) winner

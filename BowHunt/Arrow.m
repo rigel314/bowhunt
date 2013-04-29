@@ -53,10 +53,5 @@
 	return test;
 }
 
--(void)remove
-{
-    _head.x = -12;
-    _head.y = 0;
-}
 
 @end
