@@ -209,20 +209,15 @@
     [timer invalidate];
     NSString* winnerString = [NSString stringWithFormat:@"The winner is %@", name];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:self cancelButtonTitle:@"Quit" otherButtonTitles:@"Play Again", nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alert show];
     [alert release];
 }
 
 -(void)alertView:(UIAlertView*)av clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        // first button
-        exit(1);
-    }
-    else if (buttonIndex ==1) {
-        [self newGame];
-    }
+	// Exiting is bad.  "According to Apple, your app should not terminate on its own." - August (Stack Overflow 355168)
+	[self newGame];
 }
 
 -(BOOL)withinRect:(CGRect)rect Point:(CGPoint)point
