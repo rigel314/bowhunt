@@ -209,7 +209,7 @@
     [timer invalidate];
     NSString* winnerString = [NSString stringWithFormat:@"The winner is %@", name];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Over!" message:winnerString delegate:self cancelButtonTitle:@"New Game" otherButtonTitles:nil];
     [alert show];
     [alert release];
 }

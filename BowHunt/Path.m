@@ -22,7 +22,7 @@
 	
 	CGContextStrokePath(context);
 	
-	str = [[NSString alloc] initWithFormat:@"Angle:%.2f", atan2((_end.y-_start.y),(_end.x-_start.x))*180/3.141592653+180];
+	str = [[NSString alloc] initWithFormat:@"Angle:%.2f", atan2((_end.y-_start.y),-(_end.x-_start.x))*180/3.141592653+180];
 	
 	CGRect bounds = [UIScreen mainScreen].bounds;
 	
