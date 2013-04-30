@@ -8,10 +8,6 @@
 
 #import "Bow.h"
 
-#define BOW_WIDTH 30
-#define BOW_HEIGHT 30
-#define BOW_RADIUS 20
-
 @implementation Bow
 
 -(void)drawBowAtPoint:(CGPoint)point forContext:(CGContextRef)context withAngle:(float)angle

@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#define BOW_WIDTH 30
+#define BOW_HEIGHT 30
+#define BOW_RADIUS 20
+
 @interface Bow : NSObject
 
 -(void)drawBowAtPoint:(CGPoint)point forContext:(CGContextRef)context withAngle:(float)angle;

@@ -42,6 +42,9 @@
 	//Arms
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
 	CGContextAddLineToPoint(context, left, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
+	float bisectSecX = (left+.707*_length - BOW_RADIUS*cos(_angle+3.141592653/4) + left+.707*_length - BOW_RADIUS*cos(_angle-3.141592653/4))/2;
+	float bisectSecY = (bottom-2*.707*_length-.75*_length - BOW_RADIUS*sin(_angle+3.141592653/4) + bottom-2*.707*_length-.75*_length - BOW_RADIUS*sin(_angle-3.141592653/4))/2;
+	CGContextAddLineToPoint(context, bisectSecX, bisectSecY);
 	
 	CGContextMoveToPoint(context, left+.707*_length, bottom-2*.707*_length-1.5*_length+_length/5);
 	CGContextAddLineToPoint(context, left+2*.707*_length, bottom-2*.707*_length-1.5*_length+_length/5+.3*_length);
